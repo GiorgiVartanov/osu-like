@@ -67,6 +67,10 @@ function start() {
 
 function end() {
     startButton.innerHTML = "start";
+
+    circle.remove();
+    scores = 0;
+    scoresElement.innerHTML = scores;
 }
 
 function changeScore(sc) {
