@@ -1,6 +1,11 @@
 const startButton = document.querySelector(".start-button");
 const gamePanel = document.querySelector(".gamePanel");
+const scoresElement = document.querySelector(".scores");
+const addingScoresElement = document.querySelector(".adding-scores ");
+
 let circle;
+
+let scores = 0;
 
 let playing = false;
 
@@ -9,15 +14,22 @@ startButton.addEventListener("click", () => {
     playing = !playing;
 });
 
+gamePanel.addEventListener("click", function (event) {
+    var isClickInsideElement = circle.contains(event.target);
+    if (!isClickInsideElement) {
+        changeScore(-1);
+    }
+});
+
 if (gamePanel.childNodes[0]) {
     circle = document.querySelector(".circle");
 }
 
-if (circle)
-    circle.addEventListener("click", () => {
-        console.log("removing circle");
-        gamePanel.removeChild(".circle");
-    });
+// if (circle)
+//     circle.addEventListener("click", () => {
+//         console.log("removing circle");
+//         gamePanel.removeChild(".circle");
+//     });
 
 function start() {
     startButton.innerHTML = "end";
@@ -36,13 +48,18 @@ function start() {
         circle.style.top = y + "px";
 
         circle.addEventListener("click", () => {
-            gamePanel.removeChild(circle);
-
+            circle.classList.add("anim-class");
             setTimeout(() => {
-                createCircle(
-                    Math.floor(Math.random() * 340 + 40),
-                    Math.floor(Math.random() * 340 + 40)
-                );
+                circle.remove();
+
+                changeScore(1);
+
+                setTimeout(() => {
+                    createCircle(
+                        Math.floor(Math.random() * 340 + 40),
+                        Math.floor(Math.random() * 340 + 40)
+                    );
+                }, 100);
             }, 100);
         });
     }
@@ -50,4 +67,15 @@ function start() {
 
 function end() {
     startButton.innerHTML = "start";
+}
+
+function changeScore(sc) {
+    addingScoresElement.style.color = sc > 0 ? "#66f576" : "#DB4944";
+    addingScoresElement.innerHTML = sc > 0 ? "+" + sc : sc;
+    addingScoresElement.style.display = "block";
+    setTimeout(() => {
+        addingScoresElement.style.display = "none";
+    }, 200);
+    scores += sc;
+    scoresElement.innerHTML = scores;
 }
