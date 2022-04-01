@@ -76,11 +76,15 @@ nav {
 .circle {
     height: 60px;
     width: 60px;
-    border-radius: 30px;
     background-color: #fdfbff;
+    border-radius: 50px;
     box-shadow: 0px 0px 8px -2px #000000;
     position: absolute;
     transform: translate(-50%, -50%);
+
+    animation-name: disappear;
+    animation-duration: 1.5s;
+    /* animation-timing-function: cubic-bezier(0.27, 0.5, 0.62, 0.48); */
 }
 .anim-class {
     animation-name: destroy;
@@ -112,11 +116,21 @@ nav {
     from {
         height: 60px;
         width: 60px;
-        background-color: #fdfbff;
+        /* background-color: #fdfbff; */
     }
     to {
         height: 10px;
         width: 10px;
-        background-color: #bbb8bd;
+        /* background-color: #bbb8bd; */
+    }
+}
+
+@keyframes disappear {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        box-shadow: 0px 0px 80px -2px #000000;
     }
 }

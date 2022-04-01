@@ -15,9 +15,11 @@ startButton.addEventListener("click", () => {
 });
 
 gamePanel.addEventListener("click", function (event) {
-    var isClickInsideElement = circle.contains(event.target);
-    if (!isClickInsideElement) {
-        changeScore(-1);
+    if (playing) {
+        var isClickInsideElement = circle.contains(event.target);
+        if (!isClickInsideElement) {
+            changeScore(-1);
+        }
     }
 });
 
@@ -48,6 +50,8 @@ function start() {
         circle.style.top = y + "px";
 
         circle.addEventListener("click", () => {
+            console.log(disappearing);
+            if (disappearing) clearTimeout(disappearing);
             circle.classList.add("anim-class");
             setTimeout(() => {
                 circle.remove();
@@ -62,6 +66,17 @@ function start() {
                 }, 100);
             }, 100);
         });
+
+        let disappearing = setTimeout(() => {
+            circle.remove();
+
+            changeScore(-1);
+
+            createCircle(
+                Math.floor(Math.random() * 340 + 40),
+                Math.floor(Math.random() * 340 + 40)
+            );
+        }, 1400);
     }
 }
 

@@ -25,7 +25,6 @@ Dot.prototype.draw = function () {
 for (var i = 0; i < 30; i++) {
     var d = new Dot();
     dots.push(d);
-    console.log(d);
 }
 
 function draw() {
@@ -42,11 +41,20 @@ function draw() {
     });
 }
 
-gamePanel.addEventListener("mousemove", function (event) {
-    if (event.toElement.className != "gamePanel") {
+document.addEventListener("mousemove", function (event) {
+    if (["gamePanel", "circle"].includes(event.target.className)) {
+        mouse.x = event.pageX;
+        mouse.y = event.pageY;
+
+        dots.forEach(function (dot) {
+            dot.node.style.background = "#b93939";
+        });
+    } else {
+        dots.forEach(function (dot) {
+            dot.node.style.background = "transparent";
+        });
+        //document.querySelector(".trail").style.background = "pink";
     }
-    mouse.x = event.pageX;
-    mouse.y = event.pageY;
 });
 
 function animate() {
