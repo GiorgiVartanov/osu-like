@@ -96,8 +96,13 @@ nav {
     height: 6px;
     width: 6px;
     border-radius: 3px;
-    background: #b93939;
+    background: #b1be39;
     pointer-events: none;
+
+    animation-name: glow;
+    animation-duration: 100s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
     /* mix-blend-mode: color-burn; */
 }
 
@@ -132,5 +137,29 @@ nav {
     to {
         opacity: 0;
         box-shadow: 0px 0px 80px -2px #000000;
+    }
+}
+
+@keyframes glow {
+    14% {
+        background: red;
+    }
+    28% {
+        background-color: orange;
+    }
+    42% {
+        background-color: yellow;
+    }
+    56% {
+        background-color: green;
+    }
+    70% {
+        background-color: blue;
+    }
+    84% {
+        background-color: indigo;
+    }
+    98% {
+        background-color: violet;
     }
 }

@@ -4,10 +4,11 @@ const scoresElement = document.querySelector(".scores");
 const addingScoresElement = document.querySelector(".adding-scores ");
 
 let circle;
-
+let disappearing;
 let scores = 0;
-
 let playing = false;
+
+let audio = new Audio("assets/sounds/click.wav");
 
 startButton.addEventListener("click", () => {
     playing ? end() : start();
@@ -50,7 +51,7 @@ function start() {
         circle.style.top = y + "px";
 
         circle.addEventListener("click", () => {
-            console.log(disappearing);
+            audio.play();
             if (disappearing) clearTimeout(disappearing);
             circle.classList.add("anim-class");
             setTimeout(() => {
@@ -67,7 +68,7 @@ function start() {
             }, 100);
         });
 
-        let disappearing = setTimeout(() => {
+        disappearing = setTimeout(() => {
             circle.remove();
 
             changeScore(-1);
@@ -81,6 +82,7 @@ function start() {
 }
 
 function end() {
+    if (disappearing) clearTimeout(disappearing);
     startButton.innerHTML = "start";
 
     circle.remove();
