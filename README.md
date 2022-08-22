@@ -23,11 +23,9 @@
 
 ## Overview
 
-<!--![screenshot](https://i.ibb.co/xYN94kG/image.png)-->
-
 this is a simple website, where you can search among pokemons and items from pokemon games
 
--   you can see demo on https://github.com/PhYell/osu-like
+-   you can see demo on https://phosu.netlify.app
 
 ## Contact
 
